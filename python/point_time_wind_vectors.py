@@ -3,12 +3,24 @@ from numpy import float64, pi
 from numpy.ma import masked_array, mod, arctan2, sqrt, power
 from os import getenv
 from datetime import datetime
+import configparser
 
+# Get API Key
+api_key = getenv("METAPIKEY")
+if not api_key:
+    raise ValueError("API key not found. Make sure you have set the METAPIKEY environment variable.")
 
-# NOTE: don't for get to set "apikey" env, or the default below.
+# Read coordinates from the config file
+config = configparser.ConfigParser()
+config.read('config.ini')
+
+lon = float(config.get('Location', 'lon'))
+lat = float(config.get('Location', 'lat'))
+
+# NOTE: don't for get to set METAPIKEY env var, for the default below.
 resp = post(
     "https://forecast-v2.metoceanapi.com/point/time",
-    headers={"x-api-key": getenv("apikey", "MYAPIKEY")},
+    headers={"x-api-key": api_key},
     json={
         "points": [{
             "lon": 174.7842,

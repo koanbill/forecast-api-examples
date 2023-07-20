@@ -9,6 +9,8 @@ Python:
 
 To run the examples you will need to set the ENV `apikey` e.g.
 ```
-apikey=MYAPIKEY python3 examples-py/point_time_wind_vectors.py
+export $METAPIKEY="apikey"
+python3 point_time_wind_vectors.py
 ```
 
+Set the coordinates you are interested in in the config.ini in this folder.
