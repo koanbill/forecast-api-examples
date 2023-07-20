@@ -23,8 +23,8 @@ resp = post(
     headers={"x-api-key": api_key},
     json={
         "points": [{
-            "lon": 174.7842,
-            "lat": -37.7935
+            "lon": lon,
+            "lat": lat 
         }],
         "variables": [
             "wind.speed.northward.at-10m",
