@@ -2,16 +2,16 @@ from requests import post
 from os import getenv
 from datetime import datetime
 import json
-
+from config import api_key, lon, lat
 
 # NOTE: don't for get to set "apikey" env, or the default below.
 resp = post(
     "https://forecast-v2.metoceanapi.com/point/time",
-    headers={"x-api-key": getenv("apikey", "MYAPIKEY")},
+    headers={"x-api-key": api_key},
     json={
         "points": [{
-            "lon": 174.7842,
-            "lat": -37.7935
+            "lon": lon,
+            "lat": lat 
         }],
         "variables": [
             "cloud.cover"

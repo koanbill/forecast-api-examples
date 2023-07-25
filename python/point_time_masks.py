@@ -3,7 +3,7 @@ from numpy import float64
 from numpy.ma import masked_array
 from os import getenv
 from datetime import datetime
-
+from config import api_key
 
 # Below is an example of selecting two geographical points, one in the ocean -37.7935, 174.7842 and the other on
 # # land -37.7734, 175.2158. The variable selected wave.height is an ocean variable. In the repsonse output a few
@@ -15,7 +15,7 @@ from datetime import datetime
 # NOTE: don't for get to set "apikey" env, or the default below.
 resp = post(
     "https://forecast-v2.metoceanapi.com/point/time",
-    headers={"x-api-key": getenv("apikey", "MYAPIKEY")},
+    headers={"x-api-key": api_key},
     json={
         "points": [{
           "lon": 174.7842,

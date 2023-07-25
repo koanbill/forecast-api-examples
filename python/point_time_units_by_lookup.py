@@ -3,7 +3,7 @@ from numpy import float64
 from numpy.ma import masked_array
 from os import getenv
 from datetime import datetime
-
+from config import api_key, lon, lat
 
 def _convert_units(data, src_units: str, dst_units: str, units_list: dict):
     if src_units == dst_units:
@@ -24,15 +24,15 @@ def _get_json(resp):
 def _main():
     with Session() as session:
         url = "https://forecast-v2.metoceanapi.com"
-        auth_headers = {"x-api-key": getenv("apikey", "MYAPIKEY")}
+        auth_headers = {"x-api-key": api_key}
         units_list = _get_json(session.get(f"{url}/units/", headers=auth_headers))
         forecast = _get_json(session.post(
             f"{url}/point/time",
             headers=auth_headers,
             json={
                 "points": [{
-                    "lon": 174.7842,
-                    "lat": -37.7935
+                    "lon": lon,
+                    "lat": lat 
                 }],
                 "variables": [
                     "air.temperature.at-2m"
